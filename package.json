@@ -1,5 +1,5 @@
 {
-  "name": "multi-path",
+  "name": "multi-location-updates",
   "version": "0.0.0",
   "license": "MIT",
   "angular-cli": {},
@@ -10,6 +10,11 @@
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikeybyker/multi-location-updates.git"
+  },
+  "description": "A quick test of multi-location updates with AngularFire2...",
   "private": true,
   "dependencies": {
     "@angular/common": "~2.0.0",
@@ -23,7 +28,9 @@
     "core-js": "^2.4.1",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.6.23"
+    "zone.js": "^0.6.23",
+    "angularfire2": "^2.0.0-beta.5",
+    "firebase": "^3.4.0"
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.30",

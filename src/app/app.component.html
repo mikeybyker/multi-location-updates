@@ -1,3 +1,35 @@
-<h1>
-  {{title}}
-</h1>
+<div class="row row-full">
+	<div class="medium-7 columns">
+		<h4>AngularFire2: Testing Multi-location Updates</h4>
+		<p>
+			Original data:<br>
+		</p>
+		<pre>{{originalData}}</pre>
+		<hr>
+		<h5>Update Multi</h5>
+		<p>
+			Does not work as expected: A set operation is used, rather than an update...Note the values not included in the update object
+			are wiped out on firebase...
+		</p>
+		<pre>{{updateCode}}</pre>
+		<button class="button success expanded" (click)="updateMultiData()">Multi-location Update</button>
+		<!--<button class="button success expanded" (click)="updateMultiDataX()">Multi-location Update Alt</button>-->
+		<hr>
+		<h5>Update Single</h5>
+		<p>
+			Does work as expected: Values not specified in the update are left as is.
+		</p>
+		<pre>{{justA}}</pre>
+		<button class="button expanded" (click)="updateA()">Update ObjectA</button>
+		<hr>
+		<button class="button alert expanded" (click)="resetData()">Reset</button>
+	</div>
+	<div class="medium-5 columns">
+		<h4>Data</h4>
+		<div class="callout">
+			<div class="over">
+				<pre>{{data | async | json}}</pre>
+			</div>
+		</div>
+	</div>
+</div>

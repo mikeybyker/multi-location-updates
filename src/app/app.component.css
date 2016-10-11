@@ -1,0 +1,25 @@
+.row-full
+{
+  height: 100vh;
+  display: flex;
+}
+.callout
+{
+  height: 100%;
+}
+
+.over
+{
+  overflow: auto;
+  height: 100%;
+}
+  .over pre
+  {
+    white-space: pre-wrap;
+    word-wrap: break-word; 
+  }
+
+pre
+{
+  background-color: #e3e3e3;
+}
