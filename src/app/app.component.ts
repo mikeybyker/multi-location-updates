@@ -17,9 +17,22 @@ export class AppComponent implements OnInit {
   originalData: string = `objectA: { a: 1, b: 2, c: 3, d: 4, e: 5 };
 objectB: { w: 1, x: 2, y: 3, z: 4 };`;
   updateCode: string = `let update = {};
-update['test/objectA'] = { a: 10, e: 50 };
-update['test/objectB'] = { x: 20 };
-this.af.database.object('/').update(update);`;
+    update['test/objectA/a'] = 10;
+    update['test/objectA/e'] = 50;
+    update['test/objectB/x'] = 20;
+    this.af.database.object('/').update(update);`;
+  updateCodeBigObject: string = `let update = {
+      objectA: {
+        a: 10
+      },
+      objectB: {
+        e: 50
+      },
+      objectC: {
+        x: 20
+      }
+    };
+    this.af.database.object('test').update(update);`;
   justA: string = `this.af.database.object('test/objectA').update({ a: 99 });`;
 
   constructor(private af: AngularFire) {
@@ -30,14 +43,31 @@ this.af.database.object('/').update(update);`;
 
   }
 
-  // This *sets* rather than *updates* i.e. wrong
+  // This *sets*, but just does so atomically at multiple locations
+  // that have no other children. So you don't notice.
   updateMultiData() {
     let update = {};
-    update['test/objectA'] = { a: 10, e: 50 };
-    update['test/objectB'] = { x: 20 };
+    update['test/objectA/a'] = 10;
+    update['test/objectA/e'] = 50;
+    update['test/objectB/x'] = 20;
     this.af.database.object('/').update(update);
-    // Without the '/' does exactly the same thing...
-    // this.af.database.object('').update(update);
+  }
+
+  // Should also work as intended, creating a giant object
+  // instead of relying on firebase backend to break down paths
+  updateMultiDataBigObject() {
+    let update = {
+      objectA: {
+        a: 10
+      },
+      objectB: {
+        e: 50
+      },
+      objectC: {
+        x: 20
+      }
+    };
+    this.af.database.object('test').update(update);
   }
 
   // This approach doesn't work either

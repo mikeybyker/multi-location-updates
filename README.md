@@ -2,12 +2,15 @@
 
 A quick test of multi-location updates with AngularFire2...
 
-[View Live](https://mikeybyker.github.io/multi-location-updates/)
+Forked from [mikeybyker](https://github.com/mikeybyker/multi-location-updates) to try and make some sense of this.
 
-It appears to be using a set rather than an update - which [isn't how firebase say it should work](https://firebase.googleblog.com/2015/09/introducing-multi-location-updates-and_86.html)
->> we can change the user's age and add a city without updating their name:
+[View Live](https://robodair.github.io/multi-location-updates/)
 
-I might be doing something wrong of course...
+It appears to be using a set at each changed child location rather than an update - which [is how firebase says it should work.](https://firebase.googleblog.com/2015/09/introducing-multi-location-updates-and_86.html)
+> we can change the user's age and add a city without updating their name:
+
+But is really really counter intuitive.
+
 
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.17.
