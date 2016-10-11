@@ -13,11 +13,11 @@ import * as firebase from 'firebase';
 import { AppComponent } from './app.component';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAFQsGrDWsrcJIghRaOckIs_R4D_mudXOM",
-  authDomain: "multi-path.firebaseapp.com",
-  databaseURL: "https://multi-path.firebaseio.com",
-  storageBucket: "multi-path.appspot.com",
-  messagingSenderId: "601546706060"
+  apiKey: "AIzaSyDDKS0MOYvCywMR3o-2DdbhyjKbSdmsUbM",
+  authDomain: "multi-location-updates.firebaseapp.com",
+  databaseURL: "https://multi-location-updates.firebaseio.com",
+  storageBucket: "multi-location-updates.appspot.com",
+  messagingSenderId: "114444710995"
 };
 
 @NgModule({
