@@ -6,14 +6,37 @@
 		</p>
 		<pre>{{originalData}}</pre>
 		<hr>
-		<h5>Update Multi</h5>
+		<h5>Update Multi Specifying all nodes explicitly</h5>
 		<p>
-			Does not work as expected: A set operation is used, rather than an update...Note the values not included in the update object
-			are wiped out on firebase...
+			Now works as expected, you'd have to programatically break your object down into set operations at multiple locations to
+			make it actually perform in the intended way. update() provided with an object with /'s in the keys just performs a set
+			at each location given, the multiple set operations are atomic though.
+			<br> Perhaps this is a bug on the firebase backend when they break down the keys into a path and then perform a set()
+			operation rather than an update() operation server side?
+			<br> Seems counterintuitive and... wrong? I can't find a definition in the <a href="https://firebase.google.com/docs/reference/js/firebase.database.Reference#update">update documenatation</a>.
+			But there is a link to the blog post. Not cool :/
 		</p>
 		<pre>{{updateCode}}</pre>
 		<button class="button success expanded" (click)="updateMultiData()">Multi-location Update</button>
 		<!--<button class="button success expanded" (click)="updateMultiDataX()">Multi-location Update Alt</button>-->
+		<hr>
+		<h5>Update Multi using a really big object</h5>
+		<p>
+			Does this work as intuitively expected? No! This definetly seems completely broken... According to the documentation this
+			should only update those nodes that I changed. What it appears to do is perform a set() on all immediate children of the
+			node I am setting at <strong>that are included in the object I send</strong>, but doesn't dive any further into the
+			tree
+		</p>
+		<p>
+			This actually makes sense when you read this part of the documentation from firebase:
+		</p>
+		<pre>As opposed to the set() method, update() can be use to selectively update only the referenced properties at the current location (instead of replacing all the child properties at the current location).</pre>
+		<p>
+			So yes, what update() is does is perform a set() operation for the value (complex or primitive) of each <strong>immediate</strong> child included
+			in your update object, and goes no further. Too intensive on the server to do more than that perhaps??
+		</p>
+		<pre>{{updateCodeBigObject}}</pre>
+		<button class="button warning expanded" (click)="updateMultiDataBigObject()">Multi-location Update using Big Object</button>
 		<hr>
 		<h5>Update Single</h5>
 		<p>
